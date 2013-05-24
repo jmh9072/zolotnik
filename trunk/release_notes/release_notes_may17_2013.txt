@@ -1,2 +1,10 @@
 May 17, 2013
 Added Requirements Document
+
+
+Comments:
+
+1. Change app name
+2. Rewrite objectives in the requirements documents as discussed during our lab meeting (why do you need this app?)
+3. Update the "statement of functionality". Give a brief overview of the app before explaining the features.
+4. Research on other apps that are similar to yours and update the requirements document under "replacement of legacy systems"
