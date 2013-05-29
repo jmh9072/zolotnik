@@ -1,5 +1,5 @@
 Zolotnik
-Sends your current travel ETA to your destination via SMS.
+Sends your current travel ETA (Estimated Time to Arrival) to your destination via SMS (Text Message).
 
 Directories:
 app/ - Android source code
