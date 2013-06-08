@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Herald!</string>
+    <string name="action_settings">Settings</string>
+    <string name="phone_hint">Recipient's Number</string>
+    <string name="address_hint">Destination Address</string>
+
+</resources>
