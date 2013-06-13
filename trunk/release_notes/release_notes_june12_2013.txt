@@ -1,0 +1,4 @@
+June 12, 2013
+Checked in basic UI that interfaces with Android Contacts
+Updated Requirements Document
+Uploaded templates for the SMS messages sent to recipients
