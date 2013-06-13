@@ -6,7 +6,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
 public class CustomOnItemSelectedListener implements OnItemSelectedListener {
-	
+	//makes toast on spinner selection
 	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 		Toast.makeText(parent.getContext(), "Interval Time : " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_SHORT).show();
 	}

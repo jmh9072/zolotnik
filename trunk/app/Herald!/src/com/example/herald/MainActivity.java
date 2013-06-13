@@ -1,6 +1,7 @@
 package com.example.herald;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.app.Activity;
@@ -14,32 +15,32 @@ import android.net.Uri;
 import android.database.Cursor;
 
 public class MainActivity extends Activity {
-	private Spinner interval_spinner;
-	private Button contactsBtn;
-	private EditText recipientNumber;
-	public static final int PICK_CONTACT = 1;
+	private Spinner interval_spinner; //controls the interval spinner
+	private Button contactsBtn; //controls the contacts button
+	private EditText recipientNumber; //controls the text field for recipient number
+	public static final int PICK_CONTACT = 1; //used in contact selection
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+        //adds a listener to the spinner
         addListenerOnSpinnerItemSelection();
         
         contactsBtn = (Button) findViewById(R.id.contacts_btn);
         recipientNumber = (EditText) findViewById(R.id.recipient_number);
-        
+        //listener for contacts buttons
         contactsBtn.setOnClickListener(new View.OnClickListener() {
         	@Override
             public void onClick(View arg0) {
-            	Intent intent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
-            	startActivityForResult(intent, PICK_CONTACT);
+            	Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);//intent to open contacts
+            	startActivityForResult(intent, PICK_CONTACT); //starts intent
             }
         });
         
 
     }
-    
+    // writes the selected contact's number to the recipientnumber edittext field
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
     	super.onActivityResult(reqCode, resultCode, data);
@@ -50,7 +51,7 @@ public class MainActivity extends Activity {
     				Uri contactData = data.getData();
     				Cursor c = getContentResolver().query(contactData, null, null, null, null);
     				if(c.moveToFirst()) {
-    					String phone_number = c.getString(c.getColumnIndexOrThrow(PhoneLookup.NUMBER));
+    					String phone_number = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
     					recipientNumber.setText(phone_number);
     				}
     			}
@@ -65,7 +66,7 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    
+    //spinner listener
     public void addListenerOnSpinnerItemSelection(){
     	interval_spinner = (Spinner) findViewById(R.id.interval_spinner);
     	interval_spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
