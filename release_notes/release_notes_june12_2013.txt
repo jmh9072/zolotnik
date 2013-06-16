@@ -5,9 +5,7 @@ Uploaded templates for the SMS messages sent to recipients
 
 
 Requirements Document:
-1. Include timeline and milestones for each phase (under scope)
-2. "Terminology" section missing!
-3. "InstaMeme" sounds good. 
+1. Incomplete requirements document
 
 Specification Document:
 1. User stories are important!! Include/Update them.
