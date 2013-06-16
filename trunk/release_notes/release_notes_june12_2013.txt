@@ -2,3 +2,22 @@ June 12, 2013
 Checked in basic UI that interfaces with Android Contacts
 Updated Requirements Document
 Uploaded templates for the SMS messages sent to recipients
+
+
+Requirements Document:
+1. Include timeline and milestones for each phase (under scope)
+2. "Terminology" section missing!
+3. "InstaMeme" sounds good. 
+
+Specification Document:
+1. User stories are important!! Include/Update them.
+
+Next steps:
+1. Have contacts load in to your application
+2. Write unit test cases for modules you have implemented so far (use user stories to identify test scenarios). 
+3. Henceforth, Write unit test cases before you implement a module/scenario (specifically, for issues that you currently have)
+4. Include comments in javadoc style to all java source files (This is mandatory!)
+5. Include comments to .xml files. 
+6. Include exception handling blocks, as necessary
+
+Good job on SMS_message_templates. Switch "driver/coder" and "navigator/spectator" roles often. Keep up the good work!
