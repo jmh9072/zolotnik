@@ -21,7 +21,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" android:debuggable="true">
         <activity
             android:name="com.example.herald.MainActivity"
             android:label="@string/app_name" >
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <meta-data android:value="AIzaSyAmQxQ7aYcArih1RDvoOQHPpRAfsfS5VoI" android:name="com.google.android.maps.v2.API_KEY"/>
-        <activity android:name="com.example.herald.MapActivity"></activity>
+        <activity android:name="MapActivity"></activity>
     </application>
 
 </manifest>
