@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+/**
+ * @MainActivity - displays the main interface for the application
+ *
+ */
 public class MainActivity extends Activity {
 	private Spinner interval_spinner; //controls the interval spinner
 	private Button contactsBtn; //controls the contacts button
@@ -41,8 +45,10 @@ public class MainActivity extends Activity {
         mapBtn.setOnClickListener(new View.OnClickListener() {
         	@Override
             public void onClick(View arg0) {
-            	Intent mapActivityIntent = new Intent(MainActivity.this, MapActivity.class);
-            	startActivityForResult(mapActivityIntent, 1);
+            	//Intent mapActivityIntent = new Intent(MainActivity.this, MapActivity.class);
+            	
+            	//startActivityForResult(mapActivityIntent, 1);
+        		startActivity(new Intent(MainActivity.this, MapActivity.class));
             }
         });
 
