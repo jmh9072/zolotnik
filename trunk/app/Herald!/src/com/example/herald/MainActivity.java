@@ -1,22 +1,21 @@
 package com.example.herald;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.PhoneLookup;
-import android.app.Activity;
 import android.view.Menu;
-import android.widget.Spinner;
-import android.widget.EditText;
-import android.widget.Button;
 import android.view.View;
-import android.content.Intent;
-import android.net.Uri;
-import android.database.Cursor;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 public class MainActivity extends Activity {
 	private Spinner interval_spinner; //controls the interval spinner
 	private Button contactsBtn; //controls the contacts button
+	private Button mapBtn; //controls the maps button
 	private EditText recipientNumber; //controls the text field for recipient number
 	public static final int PICK_CONTACT = 1; //used in contact selection
 
@@ -38,6 +37,14 @@ public class MainActivity extends Activity {
             }
         });
         
+        mapBtn = (Button) findViewById(R.id.map_btn);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+        	@Override
+            public void onClick(View arg0) {
+            	Intent mapActivityIntent = new Intent(MainActivity.this, MapActivity.class);
+            	startActivityForResult(mapActivityIntent, 1);
+            }
+        });
 
     }
     // writes the selected contact's number to the recipientnumber edittext field
