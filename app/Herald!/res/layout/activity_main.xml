@@ -30,7 +30,7 @@
             
     </LinearLayout>
 
-    
+
     <EditText 
         android:id="@+id/destination_address"
         android:layout_width="fill_parent"
@@ -38,6 +38,12 @@
         android:hint="@string/address_hint"
         android:inputType="textPostalAddress"/>
     
+        <Button
+            android:id="@+id/map_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/maps_string"></Button>
+            
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="124dp"
