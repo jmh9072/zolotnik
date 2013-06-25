@@ -1,0 +1,9 @@
+Friday June 21st
+
+-Met discussed next steps
+- discussed seperation of tasks
+
+Monday June 24th
+- discussed code review
+- discussed testing
+- discussed documentation changes
