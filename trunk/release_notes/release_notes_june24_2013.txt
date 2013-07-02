@@ -1,3 +1,13 @@
 June 24, 2013
 Updated Requirements Document
 Updated Specifications Document
+
+Comments:
+
+1. Req. document is still not complete
+2. User story for previous release (pre-alpha 0.1) missing.  
+3. Continue working on interfacing to Google maps
+4. Continue to do code reviews, document/comment any code you write, start writing test cases.
+
+
+I expect to see more progress on both on the implementation and testing fronts. Good luck!
