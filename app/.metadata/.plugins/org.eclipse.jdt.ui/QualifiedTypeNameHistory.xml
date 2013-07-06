@@ -3,10 +3,12 @@
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.widget.AdapterView.OnItemSelectedListener"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="com.example.herald.R.id"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
 <fullyQualifiedTypeName name="android.provider.Contacts.People"/>
 <fullyQualifiedTypeName name="android.net.Uri"/>
 <fullyQualifiedTypeName name="android.database.Cursor"/>
 <fullyQualifiedTypeName name="android.provider.ContactsContract.PhoneLookup"/>
+<fullyQualifiedTypeName name="com.example.herald.R"/>
+<fullyQualifiedTypeName name="com.example.herald.R.id"/>
+<fullyQualifiedTypeName name="android.view.KeyEvent"/>
 </qualifiedTypeNameHistroy>
