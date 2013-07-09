@@ -7,3 +7,19 @@ Monday June 24th
 - discussed code review
 - discussed testing
 - discussed documentation changes
+
+Wed June 26th
+-discussed design review responsibilities
+
+Friday June 27th
+-discussed problems with Connor's android device only having 4.1.1 available
+
+Monday July 1st
+-discussed progress on design review
+
+Wed July 3rd 
+- discussed feedback from design review
+- discussed logo
+
+Friday July 5th 
+-contacts is working on the emulator but not on phone
