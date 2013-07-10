@@ -1,0 +1,4 @@
+July 11, 2013
+Updated Documents
+Implemented Tests
+Google Maps api progress
