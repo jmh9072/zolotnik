@@ -71,6 +71,7 @@ int layout activity_map 0x7f030001
 int menu main 0x7f0a0000
 int string action_settings 0x7f060016
 int string address_hint 0x7f060019
+int string app_map 0x7f06001d
 int string app_name 0x7f060015
 int string auth_client_availability_notification_title 0x7f06000f
 int string auth_client_play_services_err_notification_msg 0x7f060010

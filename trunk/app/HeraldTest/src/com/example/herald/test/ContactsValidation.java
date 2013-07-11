@@ -40,7 +40,7 @@ public class ContactsValidation extends ActivityInstrumentationTestCase2<MainAct
 	}
 	
 	public void testSelectContacts() {
-		for(int i = 0; i<5; i++)
+		for(int i = 0; i<1; i++)
 		{
 			sendKeys("TAB");
 		}

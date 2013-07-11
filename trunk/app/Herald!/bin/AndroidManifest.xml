@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="16" />
+        android:targetSdkVersion="17" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <meta-data android:value="AIzaSyAmQxQ7aYcArih1RDvoOQHPpRAfsfS5VoI" android:name="com.google.android.maps.v2.API_KEY"/>
-        <activity android:name="MapActivity"></activity>
+        <activity android:name="com.example.herald.MapActivity" android:label="@string/app_map"></activity>
     </application>
 
 </manifest>
