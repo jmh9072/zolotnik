@@ -27,5 +27,6 @@
         <item>04:00</item>
     </string-array>
     <string name="maps_string">Find Address in Maps</string>
+    <string name="app_map">Map</string>
 
 </resources>
