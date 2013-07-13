@@ -2,3 +2,16 @@ July 11, 2013
 Updated Documents
 Implemented Tests
 Google Maps api progress
+
+Comments:
+1. The following is missing in the specs. document.
+
+"Create a table in the specification document that includes the release name and number, release date, the percentage of tests passed/failed and the code coverage."
+
+2. Do you plan to complete the reqs. document at all? (check comments from last 2 releases)
+
+3. Try to get G.maps load into your app., and import the destination address.
+4. Start working on sending sample text message 
+5. Explore location services.
+
+We need to be making more progress and putting in more time and "team work". Working just a day before the release doesn't really help.
