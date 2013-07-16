@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.telephony.SmsManager;
 
 /**
@@ -66,9 +67,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				startRouteMessage();
-				travelUpdateMessage();
+				//travelUpdateMessage();
 				//ToDo start countdown to next message and send arrival message also add function for data retrieval when possible
-				
+				Toast.makeText(getApplicationContext(), "Starting Route", Toast.LENGTH_SHORT).show();//makes toast so the user can tell its working, maybe include test after every message?
 			}
 		});
 
@@ -107,13 +108,13 @@ public class MainActivity extends Activity {
     }
     
     public void startRouteMessage(){
-    	String message = "Hello! I've designated you as the recipient for travel updates on my trip to" + testDestination + "\n" + "Powered by Herald!";
+    	String message = "Hello! I've designated you as the recipient for travel updates on my trip to " + testDestination + ".\n" + "Powered by Herald!";
     	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null , null);
     }
     
     public void travelUpdateMessage(){
-    	String message = "Herald! Location Update: \n I'm currently " + testETA + " from his destination of " + testDestination + ". My current location is " 
-    + testIntersection + "in " + testCity + ", " + testState;
+    	String message = "Herald! Location Update: \nI'm currently " + testETA + " from his destination of " + testDestination + ". My current location is " 
+    + testIntersection + " in " + testCity + ", " + testState;
     	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
     }
     
