@@ -1,6 +1,6 @@
 Upon starting the route
 -----------------------
-Hello! [USER] has designated you as the recipient for travel updates on his/her trip to [DESTINATION].
+Hello! I've designated you as the recipient for travel updates on my trip to [DESTINATION].
 
 Powered by Herald!
 
@@ -8,9 +8,9 @@ Travel Update
 -------------
 Herald! Location Update:
 
-[USER] is currently [ETA] minutes from his destination of [DESTINATION]. He/she is current located at [Nearest Intersecion] in [City], [State].
+I'm currently [ETA] from his destination of [DESTINATION]. My current location is [Nearest Intersecion] in [City], [State].
 
 Arrival Indication
 ------------------
 Herald! Location Update:
-[USER] has arrived at [DESTINATION]!
+I have arrived at [DESTINATION]!
