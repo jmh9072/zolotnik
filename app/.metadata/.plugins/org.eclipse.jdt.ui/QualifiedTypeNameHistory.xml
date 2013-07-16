@@ -9,6 +9,8 @@
 <fullyQualifiedTypeName name="android.database.Cursor"/>
 <fullyQualifiedTypeName name="android.provider.ContactsContract.PhoneLookup"/>
 <fullyQualifiedTypeName name="com.example.herald.R"/>
-<fullyQualifiedTypeName name="com.example.herald.R.id"/>
 <fullyQualifiedTypeName name="android.view.KeyEvent"/>
+<fullyQualifiedTypeName name="android.telephony.SmsManager"/>
+<fullyQualifiedTypeName name="com.example.herald.R.id"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 </qualifiedTypeNameHistroy>

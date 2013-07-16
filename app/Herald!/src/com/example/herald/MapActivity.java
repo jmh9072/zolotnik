@@ -3,7 +3,7 @@ package com.example.herald;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import com.google.android.gms.maps.*;
+//import com.google.android.gms.maps.*;
 
 /**
  * @MapActivity - displays the map interface to search for a destination
@@ -16,7 +16,7 @@ public class MapActivity extends Activity{
         setContentView(R.layout.activity_map);
     }
 
-    private GoogleMap mMap;
+   // private GoogleMap mMap;
     
    // mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
     

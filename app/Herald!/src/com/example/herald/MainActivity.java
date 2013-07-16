@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.telephony.SmsManager;
 
 /**
  * @MainActivity - displays the main interface for the application
@@ -20,8 +21,15 @@ public class MainActivity extends Activity {
 	private Spinner interval_spinner; //controls the interval spinner
 	private Button contactsBtn; //controls the contacts button
 	private Button mapBtn; //controls the maps button
+	private Button startBtn; //controls the Start Route Button
 	private EditText recipientNumber; //controls the text field for recipient number
 	public static final int PICK_CONTACT = 1; //used in contact selection
+	private SmsManager sms = SmsManager.getDefault();
+	private String testDestination = "Mordoor"; //temporary string will be replaced when data is pullled down from googleMaps
+	private String testETA = "12 parsecs";//temporary string replaced when data can be retrieved
+	private String testIntersection = "The Kingsroad and the Highroad";//temp string replaced when data can be retrieved
+	private String testCity = "Gotham";//temp string replaced when data can be retrieved
+	private String testState = "Unified Dakota";//temp string replace when data can be retrieved
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,18 @@ public class MainActivity extends Activity {
         		startActivity(new Intent(MainActivity.this, MapActivity.class));
             }
         });
+        
+        startBtn = (Button) findViewById(R.id.start_button);
+        startBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				startRouteMessage();
+				travelUpdateMessage();
+				//ToDo start countdown to next message and send arrival message also add function for data retrieval when possible
+				
+			}
+		});
 
     }
     // writes the selected contact's number to the recipientnumber edittext field
@@ -84,6 +104,22 @@ public class MainActivity extends Activity {
     	interval_spinner = (Spinner) findViewById(R.id.interval_spinner);
     	interval_spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     	
+    }
+    
+    public void startRouteMessage(){
+    	String message = "Hello! I've designated you as the recipient for travel updates on my trip to" + testDestination + "\n" + "Powered by Herald!";
+    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null , null);
+    }
+    
+    public void travelUpdateMessage(){
+    	String message = "Herald! Location Update: \n I'm currently " + testETA + " from his destination of " + testDestination + ". My current location is " 
+    + testIntersection + "in " + testCity + ", " + testState;
+    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
+    }
+    
+    public void arrivalIndicationMessage(){
+    	String message = "Herald! Location Update: \n I have arrived at " + testDestination + "!";
+    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
     }
     
 }
