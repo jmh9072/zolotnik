@@ -8,6 +8,7 @@
     <string name="address_hint">Destination Address</string>
     <string name="update_interval">Choose Update Interval (HH:MM)</string>
     <string name="start_route">Start Route</string>
+    <string name="stop_route">Pause Route</string>
     
     <string-array name="interval_array">
         <item>00:30</item>

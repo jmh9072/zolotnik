@@ -1,0 +1,5 @@
+July 18th, 2013
+Updated Requirements Document
+Updated Specification Document
+SMS Functionality!
+Added "Pause Route" Button
