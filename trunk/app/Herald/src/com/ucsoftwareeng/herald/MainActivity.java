@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
 	private Button contactsBtn; //controls the contacts button
 	private Button mapBtn; //controls the maps button
 	private Button startBtn; //controls the Start Route Button
+	private Button stopBtn; //controls the Stop Route Button
 	private EditText recipientNumber; //controls the text field for recipient number
 	public static final int PICK_CONTACT = 1; //used in contact selection
 	private SmsManager sms = SmsManager.getDefault();
@@ -38,8 +39,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         //adds a listener to the spinner
         addListenerOnSpinnerItemSelection();
-        
+        startBtn = (Button) findViewById(R.id.start_button);
+        stopBtn = (Button) findViewById(R.id.stop_button);
         contactsBtn = (Button) findViewById(R.id.contacts_btn);
+        
+        //startBtn.setVisibility(View.INVISIBLE); will make the start button invsible need adressing functionality before implementing 
+        stopBtn.setVisibility(View.INVISIBLE);// makes the stop button invisible
+
         recipientNumber = (EditText) findViewById(R.id.recipient_number);
         //listener for contacts buttons
         contactsBtn.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +67,7 @@ public class MainActivity extends Activity {
             }
         });
         
-        startBtn = (Button) findViewById(R.id.start_button);
+
         startBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -69,9 +75,22 @@ public class MainActivity extends Activity {
 				startRouteMessage();
 				travelUpdateMessage();
 				arrivalIndicationMessage();
+				startBtn.setVisibility(View.INVISIBLE);//gets rid of the start button so it will not be pressed multiple times
+				stopBtn.setVisibility(View.VISIBLE);//shows the stop button so that it may be pressed
+				
 				//();
 				//ToDo start countdown to next message and send arrival message also add function for data retrieval when possible
 				Toast.makeText(getApplicationContext(), "Starting Route", Toast.LENGTH_SHORT).show();//makes toast so the user can tell its working, maybe include test after every message?
+			}
+		});
+        
+        stopBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				stopBtn.setVisibility(View.INVISIBLE);//hides the stop button so it will not be pressed multiple times
+				startBtn.setVisibility(View.VISIBLE);//shows the start btn idk if we want stop to clear fields might lose
+				
 			}
 		});
 
