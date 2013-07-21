@@ -3,3 +3,11 @@ Updated Requirements Document
 Updated Specification Document
 SMS Functionality!
 Added "Pause Route" Button
+
+Comments:
+
+1. Complete/mimic SMS functionality (use scaffolding code till you get Gmaps to work)
+2. Debug permissions issue with Gmaps (the problem may or may not be permissions, but it's worth looking at permissions closely). 
+3. Write raw unit test cases to verify methods related to SMS. 
+
+Looking forward to see Google maps and SMS working for beta 0.2
