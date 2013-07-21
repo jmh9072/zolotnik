@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.telephony.SmsManager;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @MainActivity - displays the main interface for the application
@@ -27,11 +29,11 @@ public class MainActivity extends Activity {
 	private EditText recipientNumber; //controls the text field for recipient number
 	public static final int PICK_CONTACT = 1; //used in contact selection
 	private SmsManager sms = SmsManager.getDefault();
-	private String testDestination = "Mordor"; //temporary string will be replaced when data is pullled down from googleMaps
-	private String testETA = "12 parsecs";//temporary string replaced when data can be retrieved
-	private String testIntersection = "The Kingsroad and the Highroad";//temp string replaced when data can be retrieved
-	private String testCity = "Gotham";//temp string replaced when data can be retrieved
-	private String testState = "Unified Dakota";//temp string replace when data can be retrieved
+	private Timer timer = new Timer();
+	private String destination; //holds destination
+	private String eta;//holds estimated time of arrival 
+	private String city;//holds current city
+	private String state;//holds current state
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +74,22 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				startRouteMessage();
-				travelUpdateMessage();
-				arrivalIndicationMessage();
+		    	destination = "Mordor"; //temporary string will be replaced when data is pullled down from googleMaps
+				
+				String interval = interval_spinner.getSelectedItem().toString();//retrieves interval from spinner
+				String[] hoursMinutes = interval.split("[:]");//parses the interval string at the ":" character splitting to hours and minutes
+				int realInterval = (Integer.parseInt(hoursMinutes[0])*3600000)+(Integer.parseInt(hoursMinutes[1])*60000);//converts hours and minutes to miliseconds and adds them together for total interval in miliseconds
+				
 				startBtn.setVisibility(View.INVISIBLE);//gets rid of the start button so it will not be pressed multiple times
 				stopBtn.setVisibility(View.VISIBLE);//shows the stop button so that it may be pressed
-				
+				startRouteMessage();
+				timer.scheduleAtFixedRate(new TimerTask() { 
+					@Override 
+					public void run() {
+						travelUpdateMessage(); 
+						} 
+					}, 0, realInterval);//fires the travel update message after 0 milliseconds and repeatedly after the interval 
+
 				//();
 				//ToDo start countdown to next message and send arrival message also add function for data retrieval when possible
 				Toast.makeText(getApplicationContext(), "Starting Route", Toast.LENGTH_SHORT).show();//makes toast so the user can tell its working, maybe include test after every message?
@@ -88,6 +100,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				timer.cancel();
 				stopBtn.setVisibility(View.INVISIBLE);//hides the stop button so it will not be pressed multiple times
 				startBtn.setVisibility(View.VISIBLE);//shows the start btn idk if we want stop to clear fields might lose
 				
@@ -129,18 +142,27 @@ public class MainActivity extends Activity {
     }
     
     public void startRouteMessage(){
-    	String message = "Hello! I've designated you as the recipient for travel updates on my trip to " + testDestination + ".\n" + "Powered by Herald!";
+    	String message = "Hello! I've designated you as the recipient for travel updates on my trip to " + destination + ".\n" + "Powered by Herald!";
     	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null , null);
     }
     
     public void travelUpdateMessage(){
-    	String message = "Herald! Location Update: \nI'm currently " + testETA + " from my destination of " + testDestination + ". My current location is " + testCity + ", " + testState;
+    	getMapData();
+    	String message = "Herald! Location Update: \nI'm currently " + eta + " from my destination of " + destination + ". My current location is " + city + ", " + state;
     	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
     }
     
-    public void arrivalIndicationMessage(){
-    	String message = "Herald! Location Update: \n I have arrived at " + testDestination + "!";
+    public void arrivalIndicationMessage(){//need to know how the eta in google maps is returned to write when this is sent
+    	String message = "Herald! Location Update: \n I have arrived at " + destination + "!";
     	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
+    }
+    
+    public void getMapData(){
+    	//something here to pull data from google maps
+
+    	eta = "12 parsecs";//temporary string replaced when data can be retrieved
+    	city = "Gotham";//temp string replaced when data can be retrieved
+    	state = "Unified Dakota";//temp string replace when data can be retrieved
     }
     
 }
