@@ -11,6 +11,8 @@
     <string name="stop_route">Pause Route</string>
     
     <string-array name="interval_array">
+        <item>00:10</item>
+        <item>00:15</item>
         <item>00:30</item>
         <item>00:45</item>
         <item>01:00</item>
