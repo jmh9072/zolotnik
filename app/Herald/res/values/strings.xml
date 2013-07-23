@@ -9,6 +9,14 @@
     <string name="update_interval">Choose Update Interval (HH:MM)</string>
     <string name="start_route">Start Route</string>
     <string name="stop_route">Pause Route</string>
+    <string name="startRoute1">Hello! I\'ve designated you as the recipient for travel updates on my trip to </string>
+    <string name="startRoute2">.\nPowered by Herald!</string>
+    <string name="travelUpdate1">Herald! Location Update: \nI\'m currently </string>
+    <string name="travelUpdate2"> from my destination of </string>
+    <string name="travelUpdate3">. My current location is </string>
+    <string name="apostrophe">\, </string>
+    <string name="arivalMessage">Herald! Location Update: \n I have arrived at </string>
+    <string name="exclamationMark">!</string>
     
     <string-array name="interval_array">
         <item>00:10</item>

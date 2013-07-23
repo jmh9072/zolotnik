@@ -48,13 +48,21 @@ public final class R {
     public static final class string {
         public static int action_settings=0x7f050001;
         public static int address_hint=0x7f050004;
-        public static int app_map=0x7f050009;
+        public static int apostrophe=0x7f05000d;
+        public static int app_map=0x7f050011;
         public static int app_name=0x7f050000;
+        public static int arivalMessage=0x7f05000e;
         public static int contacts_string=0x7f050003;
-        public static int maps_string=0x7f050008;
+        public static int exclamationMark=0x7f05000f;
+        public static int maps_string=0x7f050010;
         public static int phone_hint=0x7f050002;
+        public static int startRoute1=0x7f050008;
+        public static int startRoute2=0x7f050009;
         public static int start_route=0x7f050006;
         public static int stop_route=0x7f050007;
+        public static int travelUpdate1=0x7f05000a;
+        public static int travelUpdate2=0x7f05000b;
+        public static int travelUpdate3=0x7f05000c;
         public static int update_interval=0x7f050005;
     }
     public static final class style {
