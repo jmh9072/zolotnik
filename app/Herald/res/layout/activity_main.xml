@@ -76,7 +76,9 @@
         android:id="@+id/stop_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/stop_route"/>"
+        android:text="@string/stop_route"
+        android:visibility="invisible"
+        android:enabled="false" />
     
     
 

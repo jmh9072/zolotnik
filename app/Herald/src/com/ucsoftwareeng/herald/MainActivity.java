@@ -47,8 +47,8 @@ public class MainActivity extends Activity {
         contactsBtn = (Button) findViewById(R.id.contacts_btn);
         
         //startBtn.setVisibility(View.INVISIBLE); will make the start button invsible need adressing functionality before implementing 
-        stopBtn.setVisibility(View.INVISIBLE);// makes the stop button invisible
-        stopBtn.setEnabled(false);//disables stop btn
+       // stopBtn.setVisibility(View.INVISIBLE);// makes the stop button invisible
+      //  stopBtn.setEnabled(false);//disables stop btn
 
         recipientNumber = (EditText) findViewById(R.id.recipient_number);
         destinationAddress = (EditText) findViewById(R.id.destination_address);

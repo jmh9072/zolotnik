@@ -28,3 +28,15 @@ Friday, July 11
 
 Wednesday July 16
 - Implemented SMS Messages
+
+Friday July 18th
+- discussed UI changes to prevent user error
+- discussed lowering min interval time to 10 min
+
+Monday July 22nd
+- discussed implementation of automatic updates
+
+Wednesday July 24th
+-discussed rebuilding unit tests
+-status  report on google maps implementation
+-focus on geting working test model for release

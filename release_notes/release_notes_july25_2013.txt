@@ -1,0 +1,5 @@
+July 25th, 2013
+Updated documents
+implemented automatic text messages over interval
+moved hardcoded strings to resources
+UI changes
