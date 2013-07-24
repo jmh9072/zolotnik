@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="com.ucsoftwareeng.herald.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <permission android:protectionLevel="signature" android:name="com.ucsoftwareeng.herald.permission.MAPS_RECEIVE"></permission>
     <uses-feature android:required="true" android:glEsVersion="0x00020000"/>
