@@ -3,3 +3,12 @@ Updated documents
 implemented automatic text messages over interval
 moved hardcoded strings to resources
 UI changes
+Google Maps working
+
+Comments:
+1. Pull routing information from Google Maps
+2. Pull time to destination from Google Maps
+3. Check timeout issues and add appropriate testing and exception handling
+4. Make the app continue to run in the background (background service)
+5. Add routing and time information to text message
+6. Update non-functional requirements (custom address search within app, homepage)
