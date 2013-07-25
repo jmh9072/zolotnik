@@ -1,20 +1,32 @@
 package com.ucsoftwareeng.herald;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.telephony.SmsManager;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * @MainActivity - displays the main interface for the application
@@ -35,7 +47,9 @@ public class MainActivity extends Activity {
 	private String eta;//holds estimated time of arrival 
 	private String city;//holds current city
 	private String state;//holds current state
-
+	
+	private GoogleMap gMap;
+	Geocoder coder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +60,14 @@ public class MainActivity extends Activity {
         stopBtn = (Button) findViewById(R.id.stop_button);
         contactsBtn = (Button) findViewById(R.id.contacts_btn);
         
+        //Set up default map location over Cincinnati
+        gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+		LatLng Cincinnati = new LatLng(39.1619, -100);
+		gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Cincinnati, 4.0f));
+		
+		coder = new Geocoder(this); //Geocoder to translate City/Location names into Latitudes/Longitudes
+		
+
         //startBtn.setVisibility(View.INVISIBLE); will make the start button invsible need adressing functionality before implementing 
        // stopBtn.setVisibility(View.INVISIBLE);// makes the stop button invisible
       //  stopBtn.setEnabled(false);//disables stop btn
@@ -68,7 +90,27 @@ public class MainActivity extends Activity {
             	//Intent mapActivityIntent = new Intent(MainActivity.this, MapActivity.class);
             	
             	//startActivityForResult(mapActivityIntent, 1);
-        		startActivity(new Intent(MainActivity.this, MapActivity.class));
+        		//startActivity(new Intent(MainActivity.this, MapActivity.class));
+        		List<Address> address;
+        		
+        		try{
+        			address = coder.getFromLocationName(destinationAddress.getText().toString(), 1);
+        			if (address != null){
+        				Address location = address.get(0);
+        				LatLng destinationLocation = new LatLng(location.getLatitude(), location.getLongitude());
+        				gMap.clear();
+        				gMap.addMarker(new MarkerOptions().position(destinationLocation));
+                		gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destinationLocation, 6.0f));
+        			}
+        		}
+        		catch(IOException e)
+        		{
+        			Log.v("IOException", "No Latitude/Longitude found for city " + destinationAddress.getText().toString());
+        		}
+        		
+        		//LatLng Cincinnati = new LatLng(39.1619, -84.4569);
+        		//gMap.addMarker(new MarkerOptions().position(Cincinnati));
+        		//gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Cincinnati, 6.0f));
             }
         });
         
