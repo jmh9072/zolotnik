@@ -2,8 +2,6 @@ package com.ucsoftwareeng.herald;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +11,6 @@ import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -41,13 +38,8 @@ public class MainActivity extends Activity {
 	private EditText recipientNumber; //controls the text field for recipient number
 	private EditText destinationAddress; //controls the text field for destination address
 	public static final int PICK_CONTACT = 1; //used in contact selection
-//	private SmsManager sms = SmsManager.getDefault();
-//	private Timer timer = new Timer();
 	private String destination; //holds destination
 	private String recipient; //holds recipeint 
-//	private String eta;//holds estimated time of arrival 
-//	private String city;//holds current city
-//	private String state;//holds current state
 	
 	private GoogleMap gMap;
 	Geocoder coder;
@@ -129,15 +121,6 @@ public class MainActivity extends Activity {
 				
 				disableUI(); //disables UI elements
 
-		//		startRouteMessage();
-		//		timer.scheduleAtFixedRate(new TimerTask() { 
-		//			@Override 
-		//			public void run() {
-		//				travelUpdateMessage(); 
-		//				} 
-		//			}, 0, realInterval);//fires the travel update message after 0 milliseconds and repeatedly after the interval 
-
-				//();
 				//ToDo start countdown to next message and send arrival message also add function for data retrieval when possible
 				Toast.makeText(getApplicationContext(), "Starting Route", Toast.LENGTH_SHORT).show();//makes toast so the user can tell its working, maybe include test after every message?
 			}
@@ -147,7 +130,6 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-	//			timer.cancel();
 				enableUI(); //enables the UI 
 			}
 		});
@@ -185,42 +167,7 @@ public class MainActivity extends Activity {
     	interval_spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     	
     }
-    /**
-     * @startRouteMessage - builds and sends message sent when user begins trip
-     *
-     */
-//    public void startRouteMessage(){
-//    	String message = getString(R.string.startRoute1) + destination + getString(R.string.startRoute2);
-//    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null , null);
-//    }
-    /**
-     * @travelUpdateMessage - builds and sends travel update messages
-     *
-     */
-//    public void travelUpdateMessage(){
-//    	getMapData();
-//    	String message = getString(R.string.travelUpdate1) + eta + getString(R.string.travelUpdate2) + destination + getString(R.string.travelUpdate3) + city + getString(R.string.apostrophe) + state;
-//    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
-//    }
-    /**
-     * @arrivalIndicationMessage - builds and sends message sent when user arrives at destination
-     *
-     */
-//    public void arrivalIndicationMessage(){//need to know how the eta in google maps is returned to write when this is sent
-//    	String message = getString(R.string.arivalMessage) + destination + getString(R.string.exclamationMark);
-//    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
-//    }
-    /**
-     * @getMapData - retrieves eta, current city and current state from google maps
-     *
-     */
- //   public void getMapData(){
-    	//something here to pull data from google maps
 
-  //  	eta = "12 parsecs";//temporary string replaced when data can be retrieved
-  //  	city = "Gotham";//temp string replaced when data can be retrieved
- //   	state = "Unified Dakota";//temp string replace when data can be retrieved
- //   }
     /**
      * @disableUI - disables the UI called when route is in progress
      *
