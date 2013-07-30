@@ -41,12 +41,13 @@ public class MainActivity extends Activity {
 	private EditText recipientNumber; //controls the text field for recipient number
 	private EditText destinationAddress; //controls the text field for destination address
 	public static final int PICK_CONTACT = 1; //used in contact selection
-	private SmsManager sms = SmsManager.getDefault();
-	private Timer timer = new Timer();
+//	private SmsManager sms = SmsManager.getDefault();
+//	private Timer timer = new Timer();
 	private String destination; //holds destination
-	private String eta;//holds estimated time of arrival 
-	private String city;//holds current city
-	private String state;//holds current state
+	private String recipient; //holds recipeint 
+//	private String eta;//holds estimated time of arrival 
+//	private String city;//holds current city
+//	private String state;//holds current state
 	
 	private GoogleMap gMap;
 	Geocoder coder;
@@ -66,11 +67,6 @@ public class MainActivity extends Activity {
 		gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Cincinnati, 4.0f));
 		
 		coder = new Geocoder(this); //Geocoder to translate City/Location names into Latitudes/Longitudes
-		
-
-        //startBtn.setVisibility(View.INVISIBLE); will make the start button invsible need adressing functionality before implementing 
-       // stopBtn.setVisibility(View.INVISIBLE);// makes the stop button invisible
-      //  stopBtn.setEnabled(false);//disables stop btn
 
         recipientNumber = (EditText) findViewById(R.id.recipient_number);
         destinationAddress = (EditText) findViewById(R.id.destination_address);
@@ -119,20 +115,27 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-		    	destination = "Mordor"; //temporary string will be replaced when data is pullled down from googleMaps
-				
+		    	destination = destinationAddress.getText().toString(); //temporary string will be replaced when data is pullled down from googleMaps
+				recipient = recipientNumber.getText().toString();
 				String interval = interval_spinner.getSelectedItem().toString();//retrieves interval from spinner
 				String[] hoursMinutes = interval.split("[:]");//parses the interval string at the ":" character splitting to hours and minutes
 				int realInterval = (Integer.parseInt(hoursMinutes[0])*3600000)+(Integer.parseInt(hoursMinutes[1])*60000);//converts hours and minutes to miliseconds and adds them together for total interval in miliseconds
+				
+				Intent intent = new Intent(getBaseContext(), SmsService.class);//intent for SmsService
+				intent.putExtra("DESTINATION", destination);//sends destination
+				intent.putExtra("RECIPIENT", recipient);//sends recipient number
+				intent.putExtra("INTERVAL", realInterval);//sends interval
+				startService(intent);//starts intent
+				
 				disableUI(); //disables UI elements
 
-				startRouteMessage();
-				timer.scheduleAtFixedRate(new TimerTask() { 
-					@Override 
-					public void run() {
-						travelUpdateMessage(); 
-						} 
-					}, 0, realInterval);//fires the travel update message after 0 milliseconds and repeatedly after the interval 
+		//		startRouteMessage();
+		//		timer.scheduleAtFixedRate(new TimerTask() { 
+		//			@Override 
+		//			public void run() {
+		//				travelUpdateMessage(); 
+		//				} 
+		//			}, 0, realInterval);//fires the travel update message after 0 milliseconds and repeatedly after the interval 
 
 				//();
 				//ToDo start countdown to next message and send arrival message also add function for data retrieval when possible
@@ -144,7 +147,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				timer.cancel();
+	//			timer.cancel();
 				enableUI(); //enables the UI 
 			}
 		});
@@ -186,38 +189,38 @@ public class MainActivity extends Activity {
      * @startRouteMessage - builds and sends message sent when user begins trip
      *
      */
-    public void startRouteMessage(){
-    	String message = getString(R.string.startRoute1) + destination + getString(R.string.startRoute2);
-    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null , null);
-    }
+//    public void startRouteMessage(){
+//    	String message = getString(R.string.startRoute1) + destination + getString(R.string.startRoute2);
+//    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null , null);
+//    }
     /**
      * @travelUpdateMessage - builds and sends travel update messages
      *
      */
-    public void travelUpdateMessage(){
-    	getMapData();
-    	String message = getString(R.string.travelUpdate1) + eta + getString(R.string.travelUpdate2) + destination + getString(R.string.travelUpdate3) + city + getString(R.string.apostrophe) + state;
-    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
-    }
+//    public void travelUpdateMessage(){
+//    	getMapData();
+//    	String message = getString(R.string.travelUpdate1) + eta + getString(R.string.travelUpdate2) + destination + getString(R.string.travelUpdate3) + city + getString(R.string.apostrophe) + state;
+//    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
+//    }
     /**
      * @arrivalIndicationMessage - builds and sends message sent when user arrives at destination
      *
      */
-    public void arrivalIndicationMessage(){//need to know how the eta in google maps is returned to write when this is sent
-    	String message = getString(R.string.arivalMessage) + destination + getString(R.string.exclamationMark);
-    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
-    }
+//    public void arrivalIndicationMessage(){//need to know how the eta in google maps is returned to write when this is sent
+//    	String message = getString(R.string.arivalMessage) + destination + getString(R.string.exclamationMark);
+//    	sms.sendTextMessage(recipientNumber.getText().toString(), null, message, null, null);
+//    }
     /**
      * @getMapData - retrieves eta, current city and current state from google maps
      *
      */
-    public void getMapData(){
+ //   public void getMapData(){
     	//something here to pull data from google maps
 
-    	eta = "12 parsecs";//temporary string replaced when data can be retrieved
-    	city = "Gotham";//temp string replaced when data can be retrieved
-    	state = "Unified Dakota";//temp string replace when data can be retrieved
-    }
+  //  	eta = "12 parsecs";//temporary string replaced when data can be retrieved
+  //  	city = "Gotham";//temp string replaced when data can be retrieved
+ //   	state = "Unified Dakota";//temp string replace when data can be retrieved
+ //   }
     /**
      * @disableUI - disables the UI called when route is in progress
      *
