@@ -16,6 +16,7 @@
     <uses-permission android:name="com.ucsoftwareeng.herald.permission.MAPS_RECEIVE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <permission android:protectionLevel="signature" android:name="com.ucsoftwareeng.herald.permission.MAPS_RECEIVE"></permission>
     <uses-feature android:required="true" android:glEsVersion="0x00020000"/>
 
@@ -34,6 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.ucsoftwareeng.herald.MapActivity"></activity>
+        <service android:name="com.ucsoftwareeng.herald.SmsService"/>
         <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyACIyllDIYSIxT9aXsfuP0J5Z2S8FvyRUE"/>
     </application>
 

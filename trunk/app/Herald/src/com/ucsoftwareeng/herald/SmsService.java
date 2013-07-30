@@ -1,9 +1,12 @@
 package com.ucsoftwareeng.herald;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,6 +16,8 @@ public class SmsService extends IntentService{
 	
 	private SmsManager sms = SmsManager.getDefault();
 	private Timer timer = new Timer();
+	private PowerManager pMgr;
+	private WakeLock wakeLock;
 	private String destination; //holds destination
 	private String eta;//holds estimated time of arrival 
 	private String city;//holds current city
@@ -26,17 +31,28 @@ public class SmsService extends IntentService{
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		Bundle extras = intent.getExtras();
-		destination = extras.getString("DESTINATION");
-		recipient = extras.getString("RECIPIENT");
-		interval = extras.getInt("INTERVAL");
+		Bundle extras = intent.getExtras();//pulls bundle of variables from mainactivity
+		destination = extras.getString("DESTINATION");//pulls the destination address
+		recipient = extras.getString("RECIPIENT");//pulls the recipient number
+		interval = extras.getInt("INTERVAL");//pulls the update interval
+		
+		pMgr = (PowerManager)getSystemService(Context.POWER_SERVICE);
+		wakeLock = pMgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "WakeLock");//sets up the wake lock so the cpu can continue the timer on screenlock
+		wakeLock.acquire();//begins the wakelock
+		
 		startRouteMessage();
+		
 		timer.scheduleAtFixedRate(new TimerTask() { 
 			@Override 
 			public void run() {
 				travelUpdateMessage(); 
 				} 
 			}, interval, interval);//fires the travel update message after 0 milliseconds and repeatedly after the interval 
+	}
+	
+	@Override
+	public void onDestroy() {
+		wakeLock.release();//releases the wakelock
 	}
 	
     /**
