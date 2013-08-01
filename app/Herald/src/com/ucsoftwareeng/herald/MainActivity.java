@@ -53,10 +53,10 @@ public class MainActivity extends Activity {
         stopBtn = (Button) findViewById(R.id.stop_button);
         contactsBtn = (Button) findViewById(R.id.contacts_btn);
         
-        //Set up default map location over Cincinnati
+        //Set up default map location
         gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-		LatLng Cincinnati = new LatLng(39.1619, -100);
-		gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Cincinnati, 4.0f));
+		LatLng defaultLocation = new LatLng(39.1619, -100);
+		gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 4.0f));
 		
 		coder = new Geocoder(this); //Geocoder to translate City/Location names into Latitudes/Longitudes
 
