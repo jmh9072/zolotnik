@@ -2,3 +2,18 @@ August 1st, 2013
 Messages should now run in the background and on screen lock
 UI testing
 promotional.docx
+
+refactored:
+MainActivity.java
+SmsService.jave new class added
+all messaging functions
+onclick function for start button in MainActivity was moved to the onRecieveIntent and changed to send intents 
+
+
+Comments:
+Create user acceptance test plan
+run UAT and summarize bugs
+fix bugs based on UAT results [timing, background services, start and stop route]
+location services
+code coverage and get exsisting test cases working 
+if time perits creat home screen
