@@ -22,13 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.IntentService;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
 import android.telephony.SmsManager;
 import android.util.Log;
 
@@ -39,8 +36,6 @@ public class SmsService extends IntentService{
 	
 	private SmsManager sms = SmsManager.getDefault();
 	private Timer timer = new Timer();
-	private PowerManager pMgr;
-	private WakeLock wakeLock;
 	private String destination; //holds destination
 	private String eta;//holds estimated time of arrival 
 	private String city;//holds current city
@@ -55,7 +50,11 @@ public class SmsService extends IntentService{
 	public SmsService() {
 		super("SmsService");
 	}
-
+	
+    /**
+     * @onHandleIntent - called when an intent is passed to the service, sets up location, sends start route, starts time to send location updates 
+     *
+     */
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		Bundle extras = intent.getExtras();//pulls bundle of variables from mainactivity
@@ -79,24 +78,22 @@ public class SmsService extends IntentService{
 			//Log.v("IOException", "No Latitude/Longitude found for city " + destinationAddress.getText().toString());
 		}
 		
-		pMgr = (PowerManager)getSystemService(Context.POWER_SERVICE);
-		wakeLock = pMgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "WakeLock");//sets up the wake lock so the cpu can continue the timer on screenlock
-		wakeLock.acquire();//begins the wakelock
 		
-		//startRouteMessage();
-		travelUpdateMessage();
+		startRouteMessage();
 		
 		timer.scheduleAtFixedRate(new TimerTask() { 
 			@Override 
 			public void run() {
 				travelUpdateMessage(); 
 				} 
-			}, interval, interval);//fires the travel update message after 0 milliseconds and repeatedly after the interval 
+			}, interval, interval);//fires the travel update message after the interval and repeatedly after the interval 
 	}
-	
+    /**
+     * @onDestroy - called when the service is stopped
+     *
+     */
 	@Override
 	public void onDestroy() {
-		wakeLock.release();//releases the wakelock
 	}
 	
     /**
@@ -104,7 +101,8 @@ public class SmsService extends IntentService{
      *
      */
     public void startRouteMessage(){
-    	String message = getString(R.string.startRoute1) + destination + getString(R.string.startRoute2);
+    	getMapData();
+    	String message = getString(R.string.startRoute1) + destination + getString(R.string.startRoute2) + eta + getString(R.string.startRoute3);
     	int stringLength = message.length();
     	if(stringLength<=160)
     	{
@@ -165,7 +163,10 @@ public class SmsService extends IntentService{
     	//city = "Gotham";//temp string replaced when data can be retrieved
     	//state = "Unified Dakota";//temp string replace when data can be retrieved
     }
-    
+    /**
+     * @parseString - when a string is too long to be sent in a text message this cuts the string into multiple 160 character strings in an array to be sent in a multipart message
+     *
+     */
     public ArrayList<String> parseString(String message){
     	ArrayList<String> splitMessage = new ArrayList<String>();
     	int counter = 0;
