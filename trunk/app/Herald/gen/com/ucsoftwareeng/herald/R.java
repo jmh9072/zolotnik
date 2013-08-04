@@ -211,10 +211,10 @@ containing a value of this type.
     public static final class string {
         public static final int action_settings=0x7f060016;
         public static final int address_hint=0x7f060019;
-        public static final int apostrophe=0x7f060022;
-        public static final int app_map=0x7f060026;
+        public static final int apostrophe=0x7f060023;
+        public static final int app_map=0x7f060027;
         public static final int app_name=0x7f060015;
-        public static final int arivalMessage=0x7f060023;
+        public static final int arivalMessage=0x7f060024;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
@@ -294,16 +294,17 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f06000e;
         public static final int contacts_string=0x7f060018;
-        public static final int exclamationMark=0x7f060024;
-        public static final int maps_string=0x7f060025;
+        public static final int exclamationMark=0x7f060025;
+        public static final int maps_string=0x7f060026;
         public static final int phone_hint=0x7f060017;
         public static final int startRoute1=0x7f06001d;
         public static final int startRoute2=0x7f06001e;
+        public static final int startRoute3=0x7f06001f;
         public static final int start_route=0x7f06001b;
         public static final int stop_route=0x7f06001c;
-        public static final int travelUpdate1=0x7f06001f;
-        public static final int travelUpdate2=0x7f060020;
-        public static final int travelUpdate3=0x7f060021;
+        public static final int travelUpdate1=0x7f060020;
+        public static final int travelUpdate2=0x7f060021;
+        public static final int travelUpdate3=0x7f060022;
         public static final int update_interval=0x7f06001a;
     }
     public static final class style {

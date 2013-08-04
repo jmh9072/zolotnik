@@ -18,6 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+import android.content.Context;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,9 +43,15 @@ public class MainActivity extends Activity {
 	public static final int PICK_CONTACT = 1; //used in contact selection
 	private String destination; //holds destination
 	private String recipient; //holds recipeint 
+	private PowerManager pMgr;
+	private WakeLock wakeLock;
 	
 	private GoogleMap gMap;
 	Geocoder coder;
+    /**
+     * @onCreate - called when the activity is created
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +111,7 @@ public class MainActivity extends Activity {
             }
         });
         
-
+        
         startBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -120,6 +129,10 @@ public class MainActivity extends Activity {
 				startService(intent);//starts intent
 				
 				disableUI(); //disables UI elements
+				
+				pMgr = (PowerManager)getSystemService(Context.POWER_SERVICE);
+				wakeLock = pMgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "WakeLock");//sets up the wake lock so the cpu can continue the timer on screenlock
+				wakeLock.acquire();//begins the wakelock
 
 				//ToDo start countdown to next message and send arrival message also add function for data retrieval when possible
 				Toast.makeText(getApplicationContext(), "Starting Route", Toast.LENGTH_SHORT).show();//makes toast so the user can tell its working, maybe include test after every message?
@@ -131,6 +144,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				enableUI(); //enables the UI 
+				wakeLock.release();
 			}
 		});
 
@@ -154,7 +168,7 @@ public class MainActivity extends Activity {
     	}
     }
 
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -162,6 +176,10 @@ public class MainActivity extends Activity {
         return true;
     }
     //spinner listener
+    /**
+     * @addListenerOnSpinnerItemSelection - listens for a change in spinner selection 
+     *
+     */
     public void addListenerOnSpinnerItemSelection(){
     	interval_spinner = (Spinner) findViewById(R.id.interval_spinner);
     	interval_spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
