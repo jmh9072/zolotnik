@@ -1,0 +1,5 @@
+August 8th 2013
+Location services
+APK
+Errata file
+Bug fixes
